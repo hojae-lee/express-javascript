@@ -270,6 +270,7 @@ console.log(Person4.prototype.getName());
 
 console.log("==============클로저=================");
 //클로저는 내부함수가 외부함수의 context에 접근 할 수 있는 것을 가르킨다.
+//생명 주기가 끝난 외부 함수의 변수를 참조하는 함수를 클로저라고 한다.
 
 function outter(){
     let outtertext = "밖에 녀석";
@@ -307,6 +308,74 @@ console.log(ghost.get_title());
 console.log(matrix.get_title());
 
 ghost.set_title("setghost");
-console.log(ghost.get_title())
+console.log(ghost.get_title());
+
+//루프를 돌면서 5가 이미 들어가있다. 최종적으로는 값을 부를 때 5의 값을 5번 호출하는 것이 발생함.
+var arr = []
+for(var i = 0; i < 5; i++){
+    arr[i] = function(){
+        return i;
+    }
+}
+for(var index in arr) {
+    //console.log(arr[index]());
+}
+//밑 처럼 바꿔야함.
+
+var arr = []
+for(var i = 0; i < 5; i++){
+    arr[i] = function(id) {
+        return function(){
+            return id;
+        }
+    }(i);
+}
+for(var index in arr) {
+    //console.log(arr[index]());
+}
+
+//var i를 let i 로 바꾸면 댐. 전역변수라...
+var arr = []
+for(let i = 0; i < 5; i++){
+    arr[i] = function(){
+        return i;
+    }
+}
+for(let index in arr) {
+    //console.log(arr[index]());
+}
+
+//외부함수의 변수에 접근할 수 있는 내부함수....
+function showName(fisrtname, lastname){
+    var nameintro = "my name is ";
+    makerfullName = function(){
+        return console.log(nameintro + fisrtname + " "+ lastname);
+    }
+    return makerfullName();
+}
+showName("michael", "jackson");
+
+//let으로 바꿀 경우 해결댐..
+function celebrityIDCreator(thedata){
+    var uniqueID = 100;
+    for(var i=0; i<thedata.length; i++){
+        thedata[i]["id"] = function(){
+            return uniqueID + i;
+        }
+    }
+    return thedata;
+}
+
+var actionCelebs = [{name:"Stallone", id:0}, {name:"Cruise", id:0}, {name:"Willis", id:0}];
+var createIdForActionCelebs = celebrityIDCreator(actionCelebs);
+var stalloneID1 = createIdForActionCelebs[0];
+var stalloneID2 = createIdForActionCelebs[1];
+var stalloneID3 = createIdForActionCelebs[2];
+//클로저는 값이 아닌 참조로 접근하기 때문에 최종 갱신된 변수에 대해서만 접근하여 103을 리턴하게 됨.
+console.log(stalloneID1.id()); // 103 100
+console.log(stalloneID2.id()); // 103 101
+console.log(stalloneID3.id()); // 103 102
+
+
 
 module.exports = router;
