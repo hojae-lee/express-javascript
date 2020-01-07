@@ -376,6 +376,25 @@ console.log(stalloneID1.id()); // 103 100
 console.log(stalloneID2.id()); // 103 101
 console.log(stalloneID3.id()); // 103 102
 
+//네임스페이스란 수많은 함수, 객체, 변수들로 이루어진 코드가 전역 유효범위를 어지럽히지 않고 애플리케이션이나 라이브러리를 위한
+//하나의 전역 객체를 만들고 모든 기능을 이 객체에 추가하는 것을 말합니다.(이름이 겹치치않도록)
 
+//전역 객체
+if(typeof MYAPP === "undefined"){
+    var MYAPP = {};
+}
+// var MYAPP = MYAPP || {}; 앞에 값이 true인 경우 검샇지 않고 앞의 값으로 출력.
+// var MYAPP = MYAPP || {};
+
+//생성자
+MYAPP.FunA = function(){
+    console.log("MYAPP");
+}
+
+//변수
+MYAPP.a_var = 1;
+
+// FunA(); // FunA is not defined
+MYAPP.FunA(); // MYAPP
 
 module.exports = router;

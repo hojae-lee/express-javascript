@@ -7,8 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var es6first = require('./routes/es6first');
-const es6sec = require('./routes/es6sec');
-const es5basic = require('./routes/es5basic');
+var es6sec = require('./routes/es6sec');
+var es5basic = require('./routes/es5basic');
 
 var app = express();
 
