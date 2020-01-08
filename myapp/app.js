@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var es6first = require('./routes/es6first');
 var es6sec = require('./routes/es6sec');
 var es5basic = require('./routes/es5basic');
+var es6third = require('./routes/es6third');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/users', usersRouter);
 app.use('/first',es6first);
 app.use('/sec',es6sec); 
 app.use('/basic',es5basic); 
+app.use('third', es6third);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

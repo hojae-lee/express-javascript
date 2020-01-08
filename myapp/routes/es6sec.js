@@ -239,4 +239,67 @@ console.log(strayCat.happy); //그르릉
 //Prototype을 get/set을 이용하여 바꿀 수 있지만 자바스크립트의 속도를 생각하면 쓰지 않는 것이 현명하다.
 //프로토타입을 정의만 하면 사용하는 것이 바람칙한 방향이다.
 
+// ES6에서 자바스크립트 class라는 문법이 추가됨. 자바스크립트는 프로토타입 기반의 객체지향언어인데 
+// 클래스개념이 추가되면서 프로토타입 대신 클래스를 쓸 수 있게 되었다.
+// 흔히 자바에서 많이 봤던 클래스와 같은 느낌이라고 보시면 됩니다.(하지만 자바스크립트에서 클래스는 사실 함수이며 프로토타입 기반이다.)
+/*
+클래스란
+클래스는 객체 지향 프로그래밍(OOP)에서 특정 객체를 생성하기 위해 변수와 메소드를 정의하는 일종의 틀로, 객체를 정의하기 위한 상태와 메서드로 구성된다.
+쉽게 말해 객체를 생성하기 위한 설계도라고 생각하면 된다.
+*/
+
+class User { // 클래스
+    constructor(hello){ //생성자
+        this.hello = hello;
+    }
+
+    userHi(){ //메서드
+        console.log(this.hello);
+    }
+}
+
+let users = new User("useHello");
+users.userHi();
+
+//constructor()은 new에 의해 자동 호출됨. 인자가 포함된 생성자는 선언해주면 됨.
+//new 를 통해 클래스를 선언하여 객체를 생성하면 constructor()는 자동실행됨. 생성자는 멤버변수를 초기화시켜줌.
+
+//클래스 상속
+//클래스 상속을 사용하면 클래스를 다른 클래스로 확장할 수 있습니다.
+
+class Animal {
+    constructor(name,barks){
+        this.name = name;
+        this.barks = barks;
+    }
+    names(){
+        console.log(`나는 ${this.name}입니다.`);
+    }
+    bark(){
+        console.log(this.barks);
+    }
+}
+
+let dogs = new Animal("개","왕왕");
+dogs.bark(); //왕왕
+
+class Cat extends Animal {
+    hide(){
+        console.log(`${this.name} 숨었습니다.`);
+    }
+    bark(){ //메소드 오버라이딩
+        super.bark();
+    }
+}
+
+let cat = new Cat("고양이","냥");
+cat.hide(); //고양이 숨었습니다.
+cat.names(); //나는 고양이입니다.
+cat.bark(); //냥
+
+//오버로딩과 오버라이딩 간단한 설명.
+//오버라이딩 : 상위 클래스의 메서드를 하위 클래스가 그대로 가져와 재정의 하여 사용하는 것. (상속)
+//오버로딩 : 같은 이름의 메서드에 매개변수를 넣어 각각 다르게 정의하는것. 한 클래스 내에서 사용
+//자바스크립트는 오버로딩이 되지 않습니다. 파라미터 정의만 다른 함수를 동시에 정의 할 수 없습니다. arguments를 이용해야 합니다.
+
 module.exports = router;
