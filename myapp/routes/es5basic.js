@@ -397,4 +397,26 @@ MYAPP.a_var = 1;
 // FunA(); // FunA is not defined
 MYAPP.FunA(); // MYAPP
 
+//콜백함수
+console.log("===============callback()==============");
+function callFunc(callback){
+    console.log("funct 호출됨");
+    callback("콜백함수");
+}
+
+function myCall(value){
+    console.log(`${value}입니다.`);
+}
+
+callFunc(myCall);
+//callFunc 함수에 매개변수 callback에 myCall함수를 전달하였다. 함수안에서 callback(); 을 사용하여 함수를 실행 할 수 있다.
+
+function returnFunc(){
+    return function(){
+        console.log("리턴된 함수 실행");
+    };
+}
+var myCb = returnFunc();
+myCb();
+
 module.exports = router;

@@ -71,12 +71,12 @@ const promise = (param) => {
     });
 }
 //프로미스 실행
-promise(true).then((result) => {
-    console.log("=============promise(프로미스)==============");
-    console.log(result); //바보
-}), (err) => {
-    console.log(err); //아닌데
-}
+// promise(true).then((result) => {
+//     console.log("=============promise(프로미스)==============");
+//     console.log(result); //바보
+// }), (err) => {
+//     console.log(err); //아닌데
+// }
 
 /*
     프로미스의 생성 방법은 new Promise((resolve,reject){}) 로 생성하는 방법이다.
@@ -105,9 +105,9 @@ const promise2 = new Promise((resolve, reject) => {
         reject("아닌데");
     }
 });
-Promise.all([promise1, promise2]).then((values) => {
-    console.log(values); //[바보1,바보2]
-});
+// Promise.all([promise1, promise2]).then((values) => {
+//     console.log(values); //[바보1,바보2]
+// });
 
 //접근자 프로퍼티
 console.log("===============get,set==================");
@@ -202,7 +202,7 @@ function f() {
     console.log("Hello!");
 }
 
-f.timeset(1000); // 1초 후 "Hello!" 출력
+// f.timeset(1000); // 1초 후 "Hello!" 출력
 
 //프로토타입 메서드와 __proto__ 가 없는 객체
 //object.create(proto);
